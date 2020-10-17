@@ -1,5 +1,5 @@
 import axios from "axios";
-import { PRODUCTS_FETCH,PRODUCT_FETCH,PRODUCT_CREATE,PRODUCT_UPDATE } from "../constants/ActionType";
+import { PRODUCTS_FETCH,PRODUCT_FETCH,PRODUCT_CREATE,PRODUCT_UPDATE,PRODUCT_DELETE} from "../constants/ActionType";
 
 export const productsFetch = () => {
 
@@ -24,9 +24,10 @@ export const productFetch = (id) => {
 export const productsDelete = id => {
     return dispatch => {
         axios.delete(process.env.REACT_APP_API_URL+"/products/"+id).then(res => {
-            axios.get(process.env.REACT_APP_API_URL+"/products").then(res => {
-                dispatch({ type : PRODUCTS_FETCH, payload: res.data});
-            });
+            dispatch({ type : PRODUCT_DELETE , payload :  id});
+            // axios.get(process.env.REACT_APP_API_URL+"/products").then(res => {
+            //     dispatch({ type : PRODUCTS_FETCH, payload: res.data});
+            // });
         });
     }
 }
@@ -34,10 +35,10 @@ export const productsDelete = id => {
 export const productCreate = (value) => {
     return dispatch => {
         axios.post(process.env.REACT_APP_API_URL+"/products",value).then(res => {
-            //dispatch({ type : PRODUCT_CREATE , payload :  res.data});
-            axios.get(process.env.REACT_APP_API_URL+"/products").then(res => {
-                dispatch({ type : PRODUCT_CREATE, payload: res.data});
-            });
+            dispatch({ type : PRODUCT_CREATE , payload :  res.data});
+            // axios.get(process.env.REACT_APP_API_URL+"/products").then(res => {
+            //     dispatch({ type : PRODUCT_CREATE, payload: res.data});
+            // });
         });
     }
 }
@@ -45,10 +46,10 @@ export const productCreate = (value) => {
 export const productUpdate = (id,value) => {
     return dispatch => {
         axios.put(process.env.REACT_APP_API_URL+"/products/"+id,value).then(res => {
-            //dispatch({ type : PRODUCT_UPDATE , payload :  res.data});
-            axios.get(process.env.REACT_APP_API_URL+"/products").then(res => {
-                dispatch({ type : PRODUCT_UPDATE, payload: res.data});
-            });
+            dispatch({ type : PRODUCT_UPDATE , payload :  res.data});
+            // axios.get(process.env.REACT_APP_API_URL+"/products").then(res => {
+            //     dispatch({ type : PRODUCT_UPDATE, payload: res.data});
+            // });
         });
     }
 }

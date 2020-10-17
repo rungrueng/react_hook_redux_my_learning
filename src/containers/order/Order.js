@@ -38,7 +38,6 @@ class Order extends Component {
                     <p className="font-weight-bold">ยอดรวม : <font className="text-danger">{order.totalPrice}</font> บาท</p>
                 </div>
             );
-
         });
     }
 
@@ -58,8 +57,8 @@ class Order extends Component {
 }
 
 function mapToPropsState(state){
-    console.log(state.orders);
-    return {orders : state.orders};
+    //console.log(state.orders);
+    return {orders : state.orders.datas};
 }
 
 export default connect( mapToPropsState, {ordersFetch, ordersDelete}) (Order);

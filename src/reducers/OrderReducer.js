@@ -1,11 +1,25 @@
-import { ORDERS_FETCH } from "../constants/ActionType";
+import { ORDERS_FETCH, ORDERS_DELETE } from "../constants/ActionType";
 
-export default function(state = [] ,action) {
-    switch(action.type) {
-        case ORDERS_FETCH :
-            return action.payload;
+const defaultState = {
+  datas: [],
+};
 
-        default :
-            return state;
-    }
-} 
+export default function (state = defaultState, action) {
+  switch (action.type) {
+    case ORDERS_FETCH:
+      //console.log(action.payload);
+      return {
+        ...state,
+        datas: action.payload,
+      };
+
+    case ORDERS_DELETE:
+      return {
+        ...state,
+        datas: state.datas.filter((item) => item.id !== action.payload),
+      };
+
+    default:
+      return state;
+  }
+}

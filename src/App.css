@@ -24,3 +24,13 @@ h1, h2, h3, h4, h5, h6 {
 .btnleft {
     padding-left: 7.5px!important;
 }
+.set_img_box{
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    overflow-x: hidden;
+    height: 196.66px;
+}
